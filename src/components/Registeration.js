@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addUser,updateUser,removeUser } from '../redux/userSlice'
 import Users from './Users'
+import './Registeration.css'
 const Registeration = () => {
     const[user,setUser]= useState({})
     const[address,setAddress]=useState([""])
@@ -118,27 +119,33 @@ const Registeration = () => {
 
   return (
     <div>
-        Name: <input type='name' value={user.name} onChange={(e)=>{handleonchange('name',e.target.value)}} /><br/>
-        {errors.name}<br/>
-        DOB:<input type="date" value={user.date} onChange={(e)=>{handleonchange('date',e.target.value)}} /><br/>
-        {errors.date}<br/>
-        phone number:<input type="number" value={user.pnumber} onChange={(e)=>{handleonchange('pnumber',e.target.value)}} /><br/>
-        {errors.pnumber}<br/>
-        Address:
-        {          
-        address.map((item,id)=>{
-            return (<div key={id}><textarea type="text" value={item.value} onChange={(e)=>{handleOnChangeAddress(e.target.value,id)}} ></textarea><br/></div>)
-        })
-        }
-        <button onClick={handleOnClick}>Add</button><br/>
-        {errors.address}<br/>
-        password: <input type="password" value={user.password}
-        onChange={(e)=>{handleonchange('password',e.target.value)}}/><br/>
-        {errors.password}<br/>
-        confirm password: <input type="password" value={user.cpassword}
-        onChange={(e)=>{handleonchange('cpassword',e.target.value)}} /><br/>
-        {errors.cpassword}<br/>
-        <button onClick={isEditable?handleOnUpdateUser:handleOnSubmitForm}>{isEditable?"update":"Submit"}</button>
+        <div style={{display: 'flex',justifyContent: 'center'}}>
+            <div style={{display: 'flex',justifyContent: 'center',border: '3px solid black',width: '34%',padding: '1rem'}}>
+                <div style={{display: 'flex',flexDirection: 'column',width:'50%'}}>
+                    Name: <input type='name' value={user.name} onChange={(e)=>{handleonchange('name',e.target.value)}} />
+                    <div className='Error'>{errors.name}</div><br/>
+                    DOB:<input type="date" value={user.date} onChange={(e)=>{handleonchange('date',e.target.value)}} />
+                    <div className='Error'>{errors.date}</div><br/>
+                    Phone Number:<input type="number" value={user.pnumber} onChange={(e)=>{handleonchange('pnumber',e.target.value)}} />
+                    <div className='Error'>{errors.pnumber}</div><br/>
+                    Address:
+                    {          
+                        address.map((item,id)=>{
+                            return (<div key={id}><textarea type="text" value={item.value} onChange={(e)=>{handleOnChangeAddress(e.target.value,id)}} ></textarea><br/></div>)
+                        })
+                    }
+                    <button onClick={handleOnClick}>Add</button>
+                    <div className='Error'>{errors.address}</div><br/>
+                    Password: <input type="password" value={user.password}
+                    onChange={(e)=>{handleonchange('password',e.target.value)}}/>
+                    <div className='Error'>{errors.password}</div><br/>
+                    Confirm Password: <input type="password" value={user.cpassword}
+                    onChange={(e)=>{handleonchange('cpassword',e.target.value)}} />
+                    <div className='Error'>{errors.cpassword}</div><br/>
+                    <button onClick={isEditable?handleOnUpdateUser:handleOnSubmitForm}>{isEditable?"update":"Submit"}</button>
+                </div>
+            </div>
+        </div>
         <Users onEdit={(value)=>{handleOnEditUser(value)}} onDelete={()=>{handleOnRemoveUser()}}/>
     </div>
   )

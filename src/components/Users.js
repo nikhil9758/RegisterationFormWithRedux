@@ -8,7 +8,7 @@ const Users = (props) => {
     })
     
   return (
-    <table>
+    <table style={{    width: '100vw',margin: '1rem',border: '1px solid black'}}>
         <thead>
             <tr>
                 <th>Name</th>

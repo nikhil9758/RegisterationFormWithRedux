@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 function App() {
   return (
     <div className="App">
-       welcome 
+      <h1>USER REGISTERATION </h1>
        <Provider store={store}>
             <Registeration/>
        </Provider>
